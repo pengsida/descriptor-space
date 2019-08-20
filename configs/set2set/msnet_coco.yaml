@@ -1,0 +1,26 @@
+MODEL:
+  NAME: "V8_S510_R30_P"
+  META_ARCHITECTURE: "MSNetV8"
+  BACKBONE:
+    CONV_BODY: "Multi-R-18-C5"
+    STOP_DOWNSAMPLING: "C3"
+  TEST: True
+DATASET:
+  TRAIN: "COCO"
+  TEST: "HPATCHES_VIEWPOINT"
+TRAIN:
+  RESUME: True
+  CHECKPOINT_PERIOD: 1000
+  MAX_ITER: 200000
+  BASE_LR: 1e-4
+  WEIGHT_DECAY: 0.0005
+  MILESTONES: [10000]
+  GAMMA: 0.5
+  IMS_PER_BATCH: 1
+TENSORBOARD:
+  IS_ON: True
+  TARGETS:
+    SCALAR: ["loss", 'distance', 'similarity']
+    IMAGE: ['desc', 'corr', 'corr_false']
+GETTER:
+  NAME: 'MSNet'

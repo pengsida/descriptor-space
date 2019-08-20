@@ -1,0 +1,25 @@
+MODEL:
+  NAME: "msnet_coco_c4"
+  META_ARCHITECTURE: "MSNet"
+  BACKBONE:
+    CONV_BODY: "Multi-R-18-C5"
+    STOP_DOWNSAMPLING: "C3"
+DATASET:
+  TRAIN: "HPATCHES_V1"
+  TEST: "HPATCHES_V1"
+TRAIN:
+  CHECKPOINT_PERIOD: 1000
+  MAX_ITER: 200000
+  BASE_LR: 1e-3
+  WEIGHT_DECAY: 0.0005
+  MILESTONES: [10000]
+  GAMMA: 0.5
+  IMS_PER_BATCH: 1
+  RESUME: True
+TENSORBOARD:
+  IS_ON: True
+  TARGETS:
+    SCALAR: ["loss", 'distance', 'similarity']
+    IMAGE: ['desc', 'img0', 'img1', 'corr', 'corr_false']
+GETTER:
+  NAME: 'MSNet'

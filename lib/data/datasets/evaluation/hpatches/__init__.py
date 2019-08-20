@@ -1,0 +1,2 @@
+from .hpatches_eval import HpatchesEvaluator
+from .hpatches_kps_desc_eval import HpatchesDescDictEvaluator

@@ -1,0 +1,25 @@
+MODEL:
+  NAME: "superpoint"
+  META_ARCHITECTURE: "SuperPoint"
+  BACKBONE:
+    CONV_BODY: "R-18-C5"
+    STOP_DOWNSAMPLING: "C3"
+DATASET:
+  TRAIN: "HPATCHES_ILLUM"
+  TEST: "HPATCHES"
+TRAIN:
+  CHECKPOINT_PERIOD: 500
+  MAX_ITER: 200000
+  BASE_LR: 0.0001
+  WEIGHT_DECAY: 0.0005
+  MILESTONES: [10000]
+  GAMMA: 0.5
+  IMS_PER_BATCH: 4
+TENSORBOARD:
+  IS_ON: True
+  TARGETS:
+    SCALAR: ["loss", 'distance', 'similarity']
+    IMAGE: ['desc0', 'desc1', 'img0', 'img1', 'corr', 'corr_false']
+GETTER:
+  NAME: "Matterport"
+
